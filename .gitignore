@@ -1,0 +1,3 @@
+venv/
+.dotenv
+__pycache__/
