@@ -48,9 +48,13 @@ class InsereVtrinaProdutos:
         self.vtrina = VtrinaAPI()
         self.planilha = 'Novo Gspread Teste'
         self.insere_produtos_vtrina()
+        self.insere_marketplace_vtrina()
     
     def insere_produtos_vtrina(self) -> None:
         return atualiza_planilha(self.planilha, 'produtos_vtrina', self.vtrina.lista_todos_produtos())
+    
+    def insere_marketplace_vtrina(self) -> None:
+        return atualiza_planilha(self.planilha, 'marketplaces_vtrina', self.vtrina.lista_marketplace())
 
 # start = InsereOmieProdutos()
 

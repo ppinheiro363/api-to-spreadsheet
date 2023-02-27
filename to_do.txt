@@ -16,6 +16,6 @@ Bling>
 
 Vtrina > 
 
-- Listar todos produtos 
+- Listar todos produtos (ok)
 
-- Relação Marketplaces
+- Relação Marketplaces (ok)

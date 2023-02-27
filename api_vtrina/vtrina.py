@@ -40,4 +40,11 @@ class VtrinaAPI:
             pagina += 1
         return produtos
     
-    
+    def lista_marketplace(self) -> List[Dict]:
+        endpoint = f'{self.url}marketplace/identity'
+        headers = {
+                'Content-Type': 'application/json',
+                'x-access-token': self.token,
+                }
+        response = requests.get(endpoint, headers = headers)
+        return response.json()
