@@ -55,12 +55,22 @@ class InsereVtrinaProdutos:
     
     def insere_marketplace_vtrina(self) -> None:
         return atualiza_planilha(self.planilha, 'marketplaces_vtrina', self.vtrina.lista_marketplace())
+    
+    
+import datetime
 
-start = InsereOmieProdutos()
+
+start_time = datetime.datetime.now()
+
+#start = InsereOmieProdutos()
 
 start2 =  InsereBlingProdutos()
 
-start3 = InsereVtrinaProdutos()
+s#tart3 = InsereVtrinaProdutos()
 
+end_time = datetime.datetime.now()
+
+elapsed_time = end_time - start_time
+print(f"Tempo decorrido: {elapsed_time.total_seconds():.2f} segundos")
 
 

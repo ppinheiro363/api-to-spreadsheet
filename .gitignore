@@ -2,3 +2,4 @@ venv/
 .env
 __pycache__/
 autenticador.json
+old_bling.py
