@@ -6,11 +6,11 @@ Omie>
 
 - Listar Componentes kit (ok)
 
-- Calcular Preço de Custo
+- Calcular Preço de Custo (ok)
 
 Bling>
 
-- Listar todos produtos 
+- Listar todos produtos (ok)
 
 - Listar categorias 
 

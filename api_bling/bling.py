@@ -2,9 +2,13 @@ import requests
 from typing import List, Dict
 import time
 
+from dotenv import load_dotenv
+import os
+
 class BlingAPI:
-    def __init__(self, apikey: str) -> None:
-        self.apikey = apikey
+    def __init__(self) -> None:
+        load_dotenv()
+        self.apikey = os.getenv('BLING_KEY')
         self.url = 'https://bling.com.br/Api/v2/'
 
     def buscar_produto_codigo(self, codigo: str, estoque: str = None, loja: str = None, imagem: str = None) -> Dict:
@@ -19,7 +23,7 @@ class BlingAPI:
         return response.json()
     
     def buscar_pagina_produtos(self, pagina: int, estoque: str = None, loja: str = None, imagem: str = None) -> Dict:
-        endpoint = f'{self.url}produtos/{pagina}/json'
+        endpoint = f'{self.url}produtos/page={pagina}/json/'
         params ={
             'apikey': self.apikey,
             'estoque': estoque,
@@ -38,11 +42,12 @@ class BlingAPI:
             json_response = self.buscar_pagina_produtos(pagina, estoque, loja, imagem)
             if 'produtos' not in json_response['retorno']:
                 print(json_response['retorno'])
+                break
             produtos.extend([produto['produto'] for produto in json_response['retorno']['produtos']])
             pagina += 1
             time.sleep(1)
-        print(f'Busca de produtos Bling finalizada.')
         return produtos
+        
     
         
     
