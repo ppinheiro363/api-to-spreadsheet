@@ -12,6 +12,7 @@ class InsereOmieProdutos:
         self.insere_produtos_omie()
         self.insere_kits_omie()
         self.insere_preco_custo()
+        self.insere_familias()
 
     def insere_produtos_omie(self) -> None:
         return atualiza_planilha(self.planilha, 'produtos_omie', self.omie_todos_produtos)
@@ -21,6 +22,9 @@ class InsereOmieProdutos:
 
     def insere_preco_custo(self) -> None:
         return atualiza_planilha(self.planilha, 'preco_custo', self.omie.calcular_preco_custo(self.omie_todos_produtos))
+    
+    def insere_familias(self) -> None:
+        return atualiza_planilha(self.planilha, 'familias_omie', self.omie.listar_familias())
 
 
 class InsereBlingProdutos:
@@ -33,9 +37,9 @@ class InsereBlingProdutos:
     def insere_produtos_bling(self) -> None:
         return atualiza_planilha(self.planilha, 'produtos_bling', self.bling_todos_produtos)
 
-#start = InsereOmieProdutos()
+start = InsereOmieProdutos()
 
-start2 = InsereBlingProdutos()
+#start2 = InsereBlingProdutos()
 
 
 

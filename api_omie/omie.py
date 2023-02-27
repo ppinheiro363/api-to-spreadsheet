@@ -198,9 +198,26 @@ class OmieAPI:
         
         return precos_custo
 
-            
+    def listar_familias(self) -> List:
+        url = 'https://app.omie.com.br/api/v1/geral/familias/'
+        categorias = []
+        json_data = {
+        'call': 'PesquisarFamilias',
+        'app_key': '2402692597305',
+        'app_secret': '3be3f1c474093fc3e307e81fa8476a7e',
+        'param': [
+            {
+                'pagina': 1,
+                'registros_por_pagina': 500,
+                    },
+                ],
+            }
+        response = requests.post(url, json=json_data).json()
+        categorias.extend(response.get('famCadastro', []))
+        return categorias
+        
 
-
+# [{'codFamilia': '1', 'codInt': '', 'codigo': 3250197559, 'inativo': '', 'nomeFamilia': 'Construção'}]
     
     
             
