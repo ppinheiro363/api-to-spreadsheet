@@ -216,8 +216,6 @@ class OmieAPI:
         categorias.extend(response.get('famCadastro', []))
         return categorias
         
-
-# [{'codFamilia': '1', 'codInt': '', 'codigo': 3250197559, 'inativo': '', 'nomeFamilia': 'Construção'}]
     
     
             
