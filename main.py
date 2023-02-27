@@ -33,13 +33,15 @@ class InsereBlingProdutos:
         self.bling_todos_produtos = self.bling.pegar_todos_produtos()
         self.planilha = 'Novo Gspread Teste'
         self.insere_produtos_bling()
+        self.insere_categoria()
 
     def insere_produtos_bling(self) -> None:
         return atualiza_planilha(self.planilha, 'produtos_bling', self.bling_todos_produtos)
+    
+    def insere_categoria(self) -> None:
+        return atualiza_planilha(self.planilha, 'categorias_bling', self.bling.listar_categorias())
 
 start = InsereOmieProdutos()
 
-#start2 = InsereBlingProdutos()
-
-
+start2 =  InsereBlingProdutos()
 

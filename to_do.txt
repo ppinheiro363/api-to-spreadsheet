@@ -2,7 +2,7 @@ Omie>
 
 - Listar todos produtos (ok)
 
-- Listar Familias
+- Listar Familias (ok)
 
 - Listar Componentes kit (ok)
 

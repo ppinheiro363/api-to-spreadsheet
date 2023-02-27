@@ -41,12 +41,38 @@ class BlingAPI:
             print(f'Buscando itens da pagina {pagina}.')
             json_response = self.buscar_pagina_produtos(pagina, estoque, loja, imagem)
             if 'produtos' not in json_response['retorno']:
-                print(json_response['retorno'])
+                print('Finalizado a busca de produtos no Bling.')
                 break
             produtos.extend([produto['produto'] for produto in json_response['retorno']['produtos']])
             pagina += 1
             time.sleep(1)
         return produtos
+    
+    def busca_pagina_categoria(self, pagina: int) -> List[Dict]:
+        endpoint = f'{self.url}categorias/page={pagina}/json/'
+        params = {
+            'apikey': self.apikey
+        }
+        response = requests.get(endpoint, params=params)
+        return response.json()
+    
+    def listar_categorias(self) -> List[Dict]:
+        print('Iniciando busca de categorias Bling.')
+        pagina = 1
+        categorias =[]
+        while True:
+            print(f'Buscando itens da pagina {pagina}.')
+            response = self.busca_pagina_categoria(pagina)
+            if 'categorias' not in response['retorno']:
+                print('Finalizado a busca de categorias no Bling.')
+                break
+            categorias.extend([categoria['categoria'] for categoria in response[ 'retorno']['categorias']])
+            pagina += 1
+            time.sleep(1)
+        return categorias
+            
+        
+    
         
     
         
