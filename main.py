@@ -56,9 +56,11 @@ class InsereVtrinaProdutos:
     def insere_marketplace_vtrina(self) -> None:
         return atualiza_planilha(self.planilha, 'marketplaces_vtrina', self.vtrina.lista_marketplace())
 
-# start = InsereOmieProdutos()
+start = InsereOmieProdutos()
 
-# start2 =  InsereBlingProdutos()
+start2 =  InsereBlingProdutos()
 
 start3 = InsereVtrinaProdutos()
+
+
 
