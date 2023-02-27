@@ -1,0 +1,21 @@
+Omie>
+
+- Listar todos produtos (ok)
+
+- Listar Familias
+
+- Listar Componentes kit (ok)
+
+- Calcular Preço de Custo
+
+Bling>
+
+- Listar todos produtos 
+
+- Listar categorias 
+
+Vtrina > 
+
+- Listar todos produtos 
+
+- Relação Marketplaces

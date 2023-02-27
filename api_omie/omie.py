@@ -5,6 +5,7 @@ from typing import List, Dict
 from dotenv import load_dotenv
 import os
 
+import math
 
 class OmieAPI:
     def __init__(self) -> None:
@@ -67,6 +68,7 @@ class OmieAPI:
             }]
         }
         return requests.post(self.url, json=json_data).json()
+
     
     def lista_produto(self, **kwargs) -> Dict:
         json_data = {
@@ -97,16 +99,21 @@ class OmieAPI:
         return requests.post(self.url, json=json_data).json()
     
     def listar_todos_produtos(self, por_pagina: int = 500) -> List[Dict[str, any]]:
+        print('Listando produtos Omie.')
         produtos = []
         pagina = 1
         while True:
+            print(f'Listando produtos da página {pagina}.')
             response = self.lista_produto(pagina=pagina, registros_por_pagina=por_pagina)
             total_paginas = response.get('total_de_paginas')
             produtos.extend(response.get('produto_servico_cadastro', []))
             if pagina >= total_paginas:
                 break
             pagina += 1
+        print('Listagem de produtos Omie finalizada.')
         return produtos
+    
+    
 
     def deleta_componentes_kit(self, codigo_produto, codigo_componente) -> Dict:
         self.url = 'https://app.omie.com.br/api/v1/geral/produtoskit/'
@@ -127,6 +134,7 @@ class OmieAPI:
         return requests.post(self.url, json=json_data).json()
     
     def extrair_componentes(self, dados_componentes):
+        print("Listando os componentes dos Kits da Omie.")
         return [
             {
                 'codigo': produto['codigo'], 
@@ -161,6 +169,34 @@ class OmieAPI:
             for produto in dados_produtos 
             if 'imagens' in produto for imagem in produto['imagens']
             ]
+        
+    def calcular_preco_custo(self, lista_produtos):
+        # Cria um dicionário para fazer lookup dos valores unitários dos produtos
+        valores_unitarios = {produto['codigo_produto']: produto['valor_unitario'] for produto in lista_produtos}
+        
+        # Define uma função auxiliar para calcular o preço de custo de um componente do kit
+        def calcular_preco_custo_componente(componente):
+            valor_unitario = valores_unitarios[componente['codigo_produto_componente']]
+            return componente['quantidade_componente'] * valor_unitario
+
+        # Define uma função auxiliar para calcular o preço de custo de um produto
+        def calcular_preco_custo_produto(produto):
+            if 'componentes_kit' in produto:
+                # Se o produto for um kit, calcula o preço de custo dos componentes
+                preco_custo_componentes = sum([calcular_preco_custo_componente(c) for c in produto['componentes_kit']])
+                preco_custo = preco_custo_componentes
+            else:
+                # Se o produto não for um kit, o preço de custo é igual ao valor unitário
+                preco_custo = produto['valor_unitario']
+            return round(preco_custo, 2)
+
+        # Calcula o preço de custo de cada produto e armazena em uma lista de dicionários
+        precos_custo = [
+            {'codigo': produto['codigo_produto'], 
+             'custo_composicao': math.ceil(calcular_preco_custo_produto(produto)*100)/100
+             } for produto in lista_produtos]
+        
+        return precos_custo
 
             
 
