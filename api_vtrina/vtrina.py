@@ -24,7 +24,6 @@ class VtrinaAPI:
             'store': store
         }
         response = requests.get(endpoint, headers = headers, params=params)
-        print(response.status_code)
         return response.json()
     
     def lista_todos_produtos(self) -> List[Dict]:
@@ -40,3 +39,5 @@ class VtrinaAPI:
             produtos.extend(response)
             pagina += 1
         return produtos
+    
+    
