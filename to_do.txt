@@ -12,7 +12,7 @@ Bling>
 
 - Listar todos produtos (ok)
 
-- Listar categorias 
+- Listar categorias  (ok)
 
 Vtrina > 
 

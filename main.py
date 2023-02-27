@@ -1,5 +1,6 @@
 from api_omie.omie import OmieAPI
 from api_bling.bling import BlingAPI
+from api_vtrina.vtrina import VtrinaAPI
 
 from gspread_config.scope import atualiza_planilha
 
@@ -40,8 +41,20 @@ class InsereBlingProdutos:
     
     def insere_categoria(self) -> None:
         return atualiza_planilha(self.planilha, 'categorias_bling', self.bling.listar_categorias())
+    
 
-start = InsereOmieProdutos()
+class InsereVtrinaProdutos:
+    def __init__(self) -> None:
+        self.vtrina = VtrinaAPI()
+        self.planilha = 'Novo Gspread Teste'
+        self.insere_produtos_vtrina()
+    
+    def insere_produtos_vtrina(self) -> None:
+        return atualiza_planilha(self.planilha, 'produtos_vtrina', self.vtrina.lista_todos_produtos())
 
-start2 =  InsereBlingProdutos()
+# start = InsereOmieProdutos()
+
+# start2 =  InsereBlingProdutos()
+
+start3 = InsereVtrinaProdutos()
 
