@@ -78,3 +78,16 @@ class BlingAPI:
             pagina += 1
             time.sleep(1)
         return categorias
+    
+    def extrair_estrutura(self, dados_produtos: List[Dict]) -> List[Dict]:
+        print('Listando a estrutura dos produtos Bling.')
+        return [
+            {
+                'codigo': produto['codigo'],
+                'nome_componente': componente['componente']['nome'],
+                'codigo_componente': componente['componente']['codigo'],
+                'quantidade_componente': componente['componente']['quantidade']
+            }
+            for produto in dados_produtos
+            for componente in produto.get('estrutura', [])
+        ]
