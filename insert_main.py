@@ -19,6 +19,7 @@ class ColetaDadosAPIs:
         preco_custo = self.omie.calcular_preco_custo(omie_todos_produtos)
         familias_omie = self.omie.listar_familias()
         bling_todos_produtos = self.bling.pegar_todos_produtos()
+        bling_estrutura = self.bling.extrair_estrutura(bling_todos_produtos)
         categorias_bling = self.bling.listar_categorias()
         produtos_vtrina = self.vtrina.lista_todos_produtos()
         marketplaces_vtrina = self.vtrina.lista_marketplace()
@@ -29,6 +30,7 @@ class ColetaDadosAPIs:
             'preco_custo': preco_custo,
             'familias_omie': familias_omie,
             'bling_todos_produtos': bling_todos_produtos,
+            'bling_estrutura': bling_estrutura,
             'categorias_bling': categorias_bling,
             'produtos_vtrina': produtos_vtrina,
             'marketplaces_vtrina': marketplaces_vtrina,
@@ -45,6 +47,7 @@ class AtualizaPlanilha:
         atualiza_planilha(self.planilha, 'preco_custo', dados['preco_custo'])
         atualiza_planilha(self.planilha, 'familias_omie', dados['familias_omie'])
         atualiza_planilha(self.planilha, 'produtos_bling', dados['bling_todos_produtos'])
+        atualiza_planilha(self.planilha, 'bling_estrutura', dados['bling_estrutura'])
         atualiza_planilha(self.planilha, 'categorias_bling', dados['categorias_bling'])
         atualiza_planilha(self.planilha, 'produtos_vtrina', dados['produtos_vtrina'])
         atualiza_planilha(self.planilha, 'marketplaces_vtrina', dados['marketplaces_vtrina'])
