@@ -3,6 +3,8 @@ autenticador.json
 test.py
 resposta_bling.json
 analise_produto.json
+resposta_omie.json
+estrutura_bling.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
