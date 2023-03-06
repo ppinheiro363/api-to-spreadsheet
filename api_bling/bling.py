@@ -86,7 +86,7 @@ class BlingAPI:
                 'codigo': produto['codigo'],
                 'nome_componente': componente['componente']['nome'],
                 'codigo_componente': componente['componente']['codigo'],
-                'quantidade_componente': componente['componente']['quantidade']
+                'quantidade_componente': format(float(componente['componente']['quantidade']), '.2f')
             }
             for produto in dados_produtos
             for componente in produto.get('estrutura', [])
